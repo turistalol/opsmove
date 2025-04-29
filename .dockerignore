@@ -1,0 +1,38 @@
+# .dockerignore
+
+# Git files
+.git
+.gitignore
+
+# Node modules
+node_modules
+
+# Next.js build artifacts (serão gerados dentro do build)
+.next
+out
+
+# Docker files
+Dockerfile
+docker-compose.yml
+
+# Env files (NÃO inclua segredos na imagem)
+.env*
+!.env.production
+
+# Logs and temp files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Tests 
+tests/
+*.test.js
+*.spec.js
+
+# Readme
+README.md 
