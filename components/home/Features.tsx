@@ -21,7 +21,7 @@ const features = [
     icon: <MapPin className="w-12 h-12 text-brand-primary" />,
     title: "Vá para Qualquer Lugar",
     description:
-      "Seja para atravessar a cidade ou ir para outra cidade, estamos presentes em mais de 50 cidades para te atender.",
+      "Seja para atravessar a cidade ou ir para outra cidade, estamos presentes em mais de 10 cidades para te atender.",
   },
   {
     icon: <DollarSign className="w-12 h-12 text-brand-primary" />,
