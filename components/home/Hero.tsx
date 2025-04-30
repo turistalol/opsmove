@@ -8,13 +8,24 @@ import DownloadButton from "@/components/ui/download-button";
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-hero-pattern bg-cover bg-center"
-        style={{ zIndex: -2 }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-60" style={{ zIndex: -1 }}></div>
+      {/* Background Image */}
+      <div className="absolute inset-0" style={{ zIndex: -10 }}>
+        <Image 
+          src="/bg.webp" 
+          alt="Background da OPS MOVE"
+          fill
+          priority
+          sizes="100vw"
+          quality={85}
+          className="object-cover object-center"
+        />
       </div>
+      
+      {/* Overlay/Filtro */}
+      <div 
+        className="absolute inset-0 bg-black bg-opacity-60" 
+        style={{ zIndex: -5 }}
+      ></div>
 
       <div className="container-custom relative z-10 py-12">
         <div className="flex flex-col lg:flex-row items-center">

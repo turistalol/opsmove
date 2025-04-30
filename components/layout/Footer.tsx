@@ -12,7 +12,7 @@ export function Footer() {
             <div className="flex items-center gap-2 mb-4">
               <div className="relative h-10 w-10">
                 <Image 
-                  src="/logo.jpeg" 
+                  src="/logo.svg" 
                   alt="OPS MOVE Logo" 
                   fill 
                   className="object-contain rounded"

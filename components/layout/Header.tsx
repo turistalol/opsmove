@@ -39,7 +39,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2">
           <div className="relative h-10 w-10">
             <Image 
-              src="/logo.jpeg" 
+              src="/logo.svg" 
               alt="OPS MOVE Logo" 
               fill 
               className="object-contain rounded"
