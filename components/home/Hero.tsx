@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import DownloadButton from "@/components/ui/download-button";
 
 export function Hero() {
@@ -47,13 +48,15 @@ export function Hero() {
                 <DownloadButton className="inline-block px-6 py-3 bg-brand-primary text-white rounded-lg shadow-md hover:bg-brand-primary/90 font-semibold text-lg transition-colors duration-300">
                   Baixar Aplicativo
                 </DownloadButton>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="bg-transparent border-2 border-white text-white hover:bg-white/20 transition-colors"
-                >
-                  Seja um Motorista
-                </Button>
+                <Link href="/seja-um-motorista">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="bg-transparent border-2 border-white text-white hover:bg-white/20 transition-colors"
+                  >
+                    Seja um Motorista
+                  </Button>
+                </Link>
               </div>
             </motion.div>
           </div>
