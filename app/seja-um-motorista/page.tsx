@@ -33,7 +33,7 @@ const benefits = [
   {
     icon: <DollarSign className="w-12 h-12 text-[#FFC300]" />,
     title: "Ganhos Atraentes",
-    description: "Receba semanalmente com as melhores taxas do mercado e bônus por desempenho.",
+    description: "Fique com 100% do valor de cada corrida. Sem taxas sobre suas viagens, apenas uma mensalidade fixa para usar a plataforma.",
   },
   {
     icon: <Clock className="w-12 h-12 text-[#FFC300]" />,
@@ -47,8 +47,8 @@ const benefits = [
   },
   {
     icon: <Wallet className="w-12 h-12 text-[#FFC300]" />,
-    title: "Pagamento Semanal",
-    description: "Transferência garantida toda semana, direto para sua conta bancária.",
+    title: "Pagamento Mensal",
+    description: "Pague um valor mensal único e previsível para ter acesso total à plataforma. Simples e sem surpresas.",
   },
 ];
 
@@ -101,7 +101,6 @@ const requirements = [
     title: "Equipamento",
     items: [
       "Smartphone Android 6.0+",
-      "ou iOS 13+",
       "Plano de dados ativo",
       "Suporte veicular",
     ],
@@ -122,7 +121,7 @@ const features = [
   {
     icon: <Wallet className="w-8 h-8 text-[#FFC300]" />,
     title: "Ganhos Extras",
-    description: "Bônus e promoções frequentes",
+    description: "Promoções especiais no app com prêmios para motoristas e clientes participantes.",
   },
 ];
 
@@ -137,7 +136,7 @@ const faqs = [
   },
   {
     question: "Como funciona o pagamento?",
-    answer: "Realizamos transferências bancárias semanais. Todo pagamento é processado automaticamente e você pode acompanhar seus ganhos em tempo real pelo aplicativo.",
+    answer: "Com a OPS MOVE, o valor da corrida é 100% seu! Para ter acesso completo à plataforma e todas as suas vantagens, você paga apenas uma mensalidade fixa e transparente. Acompanhe seus ganhos totais diretamente pelo app.",
   },
   {
     question: "Posso trabalhar em outras plataformas?",
