@@ -92,14 +92,17 @@ export function HowItWorks() {
                 <div className="absolute top-0 w-full h-6 bg-black rounded-t-lg"></div>
                 <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-40 h-6 bg-black rounded-full"></div>
                 <div className="absolute top-0 left-0 right-0 bottom-0 bg-gray-200">
-                  <video
-                    ref={videoRef}
-                    src="/ops.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    className="object-cover w-full h-full"
-                  />
+                  {inView && (
+                    <video
+                      ref={videoRef}
+                      src="/ops.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      preload="metadata"
+                      className="object-cover w-full h-full"
+                    />
+                  )}
                   <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-4 bg-black/50 p-2 rounded-full">
                     <button onClick={togglePlay} className="text-white hover:text-brand-primary transition-colors">
                       {isPlaying ? <Pause size={20} /> : <Play size={20} />}
