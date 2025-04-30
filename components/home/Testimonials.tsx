@@ -7,6 +7,7 @@ import { Star, ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import Image from "next/image";
 
 const testimonials = [
+  // ... (keep your testimonials array as is)
   {
     name: "Luana",
     role: "Usuária Diária",
@@ -47,11 +48,9 @@ export function Testimonials() {
 
   useEffect(() => {
     if (!autoplay) return;
-
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % testimonials.length);
     }, 5000);
-
     return () => clearInterval(interval);
   }, [autoplay]);
 
@@ -75,9 +74,9 @@ export function Testimonials() {
         {/* Decorative elements */}
         <div className="absolute top-20 left-0 w-40 h-40 bg-brand-primary rounded-full opacity-10"></div>
         <div className="absolute bottom-20 right-0 w-60 h-60 bg-brand-primary rounded-full opacity-10"></div>
-        
+
         <div className="relative z-10">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16"> {/* Adjusted margin slightly */}
             <h2 className="mb-4 text-white">O que Nossos <span className="text-brand-primary">Passageiros Dizem</span></h2>
             <p className="max-w-3xl mx-auto text-lg text-gray-400">
               Não acredite apenas em nossa palavra - ouça quem usa a OPS MOVE todos os dias
@@ -93,35 +92,44 @@ export function Testimonials() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.5 }}
+                  // Grid setup: Mobile = 1 column, Medium+ = 2 columns
                   className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
                 >
-                  {/* Testimonial Content */}
-                  <div className="md:order-2">
-                    <div className="relative">
-                      <Quote className="absolute -top-6 -left-6 w-12 h-12 text-brand-primary opacity-50" />
-                      <h3 className="text-2xl font-bold mb-4">
-                        {testimonials[current].name}
-                      </h3>
-                      <p className="text-gray-400 mb-6">{testimonials[current].role}</p>
-                      <div className="flex mb-6">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`w-5 h-5 ${
-                              i < testimonials[current].rating
-                                ? "text-brand-primary fill-brand-primary"
-                                : "text-gray-400"
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      <p className="text-lg text-gray-300 italic">
-                        "{testimonials[current].text}"
-                      </p>
+                  {/* === Change 1: Text Content Block (Now first in DOM) === */}
+                  {/* Text content will appear FIRST on mobile (default grid flow) */}
+                  {/* Text content will appear SECOND on desktop (order-2) */}
+                  <div className="md:order-2 p-4 md:p-0"> {/* Added padding for mobile */}
+                    {/* === Change 2: Quote Icon Repositioned === */}
+                    {/* Removed absolute positioning, added margin-bottom */}
+                    <Quote className="w-12 h-12 text-brand-primary opacity-50 mb-6" /> {/* Adjusted margin */}
+
+                    {/* === Change 3: Removed unnecessary relative wrapper === */}
+                    {/* Content starts here */}
+                    <h3 className="text-2xl font-bold mb-2"> {/* Reduced margin slightly */}
+                      {testimonials[current].name}
+                    </h3>
+                    <p className="text-gray-400 mb-4">{testimonials[current].role}</p> {/* Adjusted margin */}
+                    <div className="flex mb-4"> {/* Adjusted margin */}
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-5 h-5 ${
+                            i < testimonials[current].rating
+                              ? "text-brand-primary fill-brand-primary"
+                              : "text-gray-400"
+                          }`}
+                        />
+                      ))}
                     </div>
+                    <p className="text-lg text-gray-300 italic">
+                      "{testimonials[current].text}"
+                    </p>
+                    {/* Content ends here */}
                   </div>
 
-                  {/* Testimonial Image */}
+                  {/* === Change 1: Testimonial Image Block (Now second in DOM) === */}
+                  {/* Image will appear SECOND on mobile (default grid flow) */}
+                  {/* Image will appear FIRST on desktop (order-1) */}
                   <div className="md:order-1 flex justify-center">
                     <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-brand-primary">
                       <Image
@@ -129,13 +137,14 @@ export function Testimonials() {
                         alt={testimonials[current].name}
                         fill
                         className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Optional: Add sizes prop for optimization
                       />
                     </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
 
-              {/* Controls */}
+              {/* Controls (No changes needed here unless touch targets are too small) */}
               <div className="flex justify-center mt-12 gap-4">
                 <button
                   onClick={handlePrev}
