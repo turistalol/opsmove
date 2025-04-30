@@ -38,6 +38,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={inter.className}>
+      <head>
+        <link rel="icon" href="/logo.svg" type="image/svg+xml" sizes="any" />
+      </head>
       <body className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow">{children}</main>
