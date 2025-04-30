@@ -6,31 +6,53 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: opsmove_web_app
+    container_name: opsmove-web-app
     restart: unless-stopped
     networks:
       - web # Conecta à rede existente 'web'
     labels:
       # --- Traefik Labels ---
       - "traefik.enable=true"
+      
       # Router para HTTPS (Domínio Principal)
       - "traefik.http.routers.opsmove-web-secure.rule=Host(`opsmove.com.br`)"
       - "traefik.http.routers.opsmove-web-secure.entrypoints=websecure" # Seu entrypoint HTTPS
       - "traefik.http.routers.opsmove-web-secure.service=opsmove-web-service"
+      
+      # --- Configuração TLS ---
       - "traefik.http.routers.opsmove-web-secure.tls=true"
-      - "traefik.http.routers.opsmove-web-secure.tls.certresolver=myCloudflareResolver" # Seu CertResolver
+      - "traefik.http.routers.opsmove-web-secure.tls.certresolver=cloudflare_opsmove" # Seu CertResolver
+      
+      # --- Especificar os Domínios para o Certificado (IMPORTANTE!) ---
+      - "traefik.http.routers.opsmove-web-secure.tls.domains[0].main=opsmove.com.br"
+      - "traefik.http.routers.opsmove-web-secure.tls.domains[0].sans=www.opsmove.com.br"
+      
+      # Router para HTTP -> HTTPS redirecionamento
+      - "traefik.http.routers.opsmove-web-http.rule=Host(`opsmove.com.br`) || Host(`www.opsmove.com.br`)"
+      - "traefik.http.routers.opsmove-web-http.entrypoints=web" # Entrypoint HTTP
+      - "traefik.http.routers.opsmove-web-http.middlewares=redirect-https@docker"
+      
       # Router para HTTPS (com www, redirecionando para sem www)
       - "traefik.http.routers.opsmove-www-secure.rule=Host(`www.opsmove.com.br`)"
       - "traefik.http.routers.opsmove-www-secure.entrypoints=websecure"
       - "traefik.http.routers.opsmove-www-secure.middlewares=redirect-to-non-www@docker"
+      - "traefik.http.routers.opsmove-www-secure.tls=true"
+      - "traefik.http.routers.opsmove-www-secure.tls.certresolver=cloudflare_opsmove"
 
       # Serviço (para onde Traefik envia o tráfego)
       - "traefik.http.services.opsmove-web-service.loadbalancer.server.port=3000" # Porta interna do container Next.js
+
+      # Middleware para HTTP -> HTTPS
+      - "traefik.http.middlewares.redirect-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-https.redirectscheme.permanent=true"
 
       # Middleware para redirecionar www para não-www
       - "traefik.http.middlewares.redirect-to-non-www.redirectregex.regex=^https://www\\.(.*)"
       - "traefik.http.middlewares.redirect-to-non-www.redirectregex.replacement=https://$${1}"
       - "traefik.http.middlewares.redirect-to-non-www.redirectregex.permanent=true"
+      
+      # --- Garantir Rede Correta ---
+      - "traefik.docker.network=web"
 
 networks:
   web:
