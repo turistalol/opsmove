@@ -92,7 +92,7 @@ const requirements = [
     items: [
       "CNH definitiva com EAR",
       "Documento do veículo",
-      "RG e CPF",
+      "Comprovante de endereço",
       "Foto de perfil recente",
     ],
   },
