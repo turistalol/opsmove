@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 
 // URLs das lojas de aplicativos - Usando as URLs reais fornecidas
-const APPLE_STORE_URL = 'https://apps.apple.com/br/app/ops-move-passageiro/id6498920591';
+const APPLE_STORE_URL = 'https://apps.apple.com/br/app/ops-move/id6746564555';
 const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=br.com.client.uniaomototaxilagoadaprata&hl=pt_BR';
 const FALLBACK_URL = '#download'; // Redirecionando para a seção DownloadApp
 
